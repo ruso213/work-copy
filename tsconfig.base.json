@@ -13,8 +13,13 @@
     "lib": ["es2020", "dom"],
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
-    "baseUrl": ".",
-    "paths": {}
+     "baseUrl": ".",
+    "paths": {
+      "@ctrl/admin/*": ["apps/admin/src/app/*"],
+      "@ctrl/new-lib/*": ["new-lib/src/*"],
+      "@ctrl/*": ["libs/*"],
+      "@copia-chamba/new-lib": ["new-lib/src/index.ts"]
+    }
   },
   "exclude": ["node_modules", "tmp"]
 }
