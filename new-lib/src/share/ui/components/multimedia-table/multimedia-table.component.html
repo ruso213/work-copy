@@ -1,0 +1,21 @@
+<div class="table-container">
+    <table cdk-table [dataSource]="multimedia" >
+        <ng-container cdkColumnDef="name">
+            <th  cdk-header-cell *cdkHeaderCellDef >Nombre de la carpeta</th>
+            <td cdk-cell *cdkCellDef="let element" > {{element.folderName}}</td>
+        </ng-container>
+        
+        <ng-container cdkColumnDef="updateDate">
+            <th cdk-header-cell *cdkHeaderCellDef >Fecha de modificación</th>
+            <td cdk-cell *cdkCellDef="let element"> {{element.updateDate}}</td>
+        </ng-container>
+        
+        <ng-container cdkColumnDef="numFiles">
+            <th cdk-header-cell *cdkHeaderCellDef >Archivos</th>
+            <td cdk-cell *cdkCellDef="let element" > {{element.numFiles}}</td>
+        </ng-container>
+        
+        <tr cdk-header-row *cdkHeaderRowDef="displayedColumns" ></tr>
+        <tr  cdk-row *cdkRowDef="let row; columns: displayedColumns" ></tr>
+    </table>
+</div>

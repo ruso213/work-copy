@@ -13,12 +13,12 @@
     "lib": ["es2020", "dom"],
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
-     "baseUrl": ".",
+    "baseUrl": ".",
     "paths": {
-      "@ctrl/admin/*": ["apps/admin/src/app/*"],
-      "@ctrl/new-lib/*": ["new-lib/src/*"],
+      "@copia-chamba/new-lib": ["new-lib/src/index.ts"],
       "@ctrl/*": ["libs/*"],
-      "@copia-chamba/new-lib": ["new-lib/src/index.ts"]
+      "@ctrl/admin/*": ["apps/admin/src/app/*"],
+      "@ctrl/new-lib/*": ["new-lib/src/*"]
     }
   },
   "exclude": ["node_modules", "tmp"]

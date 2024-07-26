@@ -1,28 +1,40 @@
-<div class="w-screen h-screen font-light flex flex-col justify-between">
+<div class="w-screen h-screen font-light flex flex-col ">
     <div class=" w-full h-16 bg-auto-green"></div>
-    @if (foldersList.length <= 0) {
-        <div class="flex justify-center">
-            <div class="w-[1132px] h-[677px] rounded-lg mt-8 border border-gray-light flex flex-col items-center gap-14">
-                <div class="flex flex-col content-center items-center mt-16">
-                    <p class="font-semibold text-xl">Multimedia</p>
-                    <p class="w-[610px] text-center ">Sube las imágenes correspondientes a las zonas de tu hotel para usarlas dentro de Contler. Podrás hacer esto después</p>
-                </div>
-                <div (click)="createFolder()" class="w-[233px] h-[167px] border  border-gray-medium rounded-lg flex flex-col items-center hover:bg-gray-light cursor-pointer">
-                    <div class="py-8 flex flex-col items-center " >
-                        <div class="w-14 h-14 border border-gray-400"></div>
-                        <p class="font-semibold">Crear carpeta</p>
+    <div class="h-full  flex flex-col justify-between">
+        @if (foldersList.length <= 0) {
+            <div class="flex justify-center">
+                <div class="w-[1132px] h-[677px] rounded-lg mt-8 border border-gray-light flex flex-col items-center gap-14">
+                    <div class="flex flex-col content-center items-center mt-16">
+                        <p class="font-semibold text-xl">Multimedia</p>
+                        <p class="w-[610px] text-center ">Sube las imágenes correspondientes a las zonas de tu hotel para usarlas dentro de Contler. Podrás hacer esto después</p>
+                    </div>
+                    <div (click)="createFolder()" class="w-[233px] h-[167px] border  border-gray-medium rounded-lg flex flex-col items-center hover:bg-gray-light cursor-pointer">
+                        <div class="py-8 flex flex-col items-center " >
+                            <div class="w-14 h-14 border border-gray-400"></div>
+                            <p class="font-semibold">Crear carpeta</p>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-    }
-    
-    <div class="h-[72px] content-blur bg-white flex  justify-center items-center">
-        <div class=" flex flex-row justify-end gap-16 w-[1132px]">
-            <button class="px-4 py-2 border border-auto-green rounded-xl">Omitir</button>
-            <button class="px-4 py-2 border border-none text-white bg-auto-green rounded-xl">Continuar</button>
-        </div>
+        }@else if (foldersList.length >= 1) {
+            <div class="">
+                <div class="mb-6 px-10 bg-gray-white flex flex-row justify-between  py-6  items-center">
+                    <p class="text-xl font-semibold">Multimedia</p>
+                    <button class="px-4 py-2 border border-none text-white bg-auto-green rounded-xl" (click)="createFolder()">Crear carpeta</button>
+                </div>
+                <div class="px-10">
+                    <lib-multimedia-table></lib-multimedia-table>
+                </div>
+            </div>
+        }
+        @if (foldersList.length <= 0) {
+            <div class="h-[72px] content-blur bg-gray-white flex  justify-center items-center">
+                <div class=" flex flex-row justify-end gap-16 w-[1132px]">
+                    <button class="px-4 py-2 border border-auto-green rounded-xl">Omitir</button>
+                    <button class="px-4 py-2 border border-none text-white bg-auto-green rounded-xl">Continuar</button>
+                </div>
+            </div>
+        }
     </div>
-</div>
-<div>
+
 </div>

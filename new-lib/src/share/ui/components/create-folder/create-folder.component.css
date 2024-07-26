@@ -6,4 +6,15 @@
     background: #fff;
     border-radius: 8px;
     padding: 20px;
+    animation: custom-dialog-enter .5s ease;
 }
+
+@keyframes custom-dialog-enter {
+    from {
+        opacity: 0;
+    }
+  
+    to {
+        opacity: 1;
+    }
+  }
