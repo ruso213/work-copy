@@ -9,4 +9,6 @@ import { UploadFileComponent } from '@ctrl/new-lib/share/ui/components/upload-fi
   templateUrl: './folder.component.html',
   styleUrl: './folder.component.scss',
 })
-export class FolderComponent {}
+export class FolderComponent {
+
+}
