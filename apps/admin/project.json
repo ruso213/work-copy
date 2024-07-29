@@ -20,7 +20,8 @@
           {
             "glob": "**/*",
             "input": "apps/admin/public"
-          }
+          },
+          "apps/admin/src/assets/icon"
         ],
         "styles": ["apps/admin/src/styles.scss"],
         "scripts": []

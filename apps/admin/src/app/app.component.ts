@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
+import { MatIconRegistry } from '@angular/material/icon';
+import { DomSanitizer } from '@angular/platform-browser';
 import { RouterModule } from '@angular/router';
-import { registerIcons } from '@copia-chamba/new-lib';
 
 @Component({
   standalone: true,
@@ -13,16 +14,21 @@ export class AppComponent {
   title = 'admin';
   loaded = false
   iconsToRegister = [
-    'folder'
+    'folder',
+    'chevron',
+    'menu',
+    'notification',
+    'ctlrlogo'
   ]
-  constructor(){
-    registerIcons(
-      this.iconsToRegister.map((icon) => ({
-        name: icon,
-        url: `/apps/admin/assets/${icon}.svg`,
-      })),
-    ).then(() => {
-      this.loaded = true;
-    });
+  constructor(
+    private domSanitizer: DomSanitizer,
+    private matIconRegistry: MatIconRegistry,
+
+  ){
+    this.iconsToRegister.forEach(icon => {      
+  
+      matIconRegistry.addSvgIcon(icon,domSanitizer.bypassSecurityTrustResourceUrl(`assets/icon/${icon}.svg`));
+
+    })
   }
 }

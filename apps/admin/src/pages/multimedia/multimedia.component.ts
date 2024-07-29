@@ -1,5 +1,5 @@
 import { UploadFileComponent } from './../../../../../new-lib/src/share/ui/components/upload-files/upload-file.component';
-import { MultimediaService } from './../../../../../new-lib/src/utils/multimedia.service';
+import { MultimediaService } from '../../../../../new-lib/src/utils/services/multimedia.service';
 import { MultimediaTableComponent } from './../../../../../new-lib/src/share/ui/components/multimedia-table/multimedia-table.component';
 import { CreateFolderComponent } from './../../../../../new-lib/src/share/ui/components/create-folder/create-folder.component';
 import { Component, OnInit } from '@angular/core';

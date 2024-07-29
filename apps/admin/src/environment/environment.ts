@@ -5,13 +5,13 @@ import { initializeApp } from "firebase/app";
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
-  apiKey: "AIzaSyAaOK_j6jBQhVD3VTLU4L2-0Qz4N4vNCEE",
-  authDomain: "copia-chamba.firebaseapp.com",
-  projectId: "copia-chamba",
-  storageBucket: "copia-chamba.appspot.com",
-  messagingSenderId: "507988001020",
-  appId: "1:507988001020:web:c16b56950c30ceee171779"
+  apiKey: "AIzaSyDFikPN9xj9zI2hpywSjlVqBV0jhof0118",
+  authDomain: "copia-chamba-34645.firebaseapp.com",
+  projectId: "copia-chamba-34645",
+  storageBucket: "copia-chamba-34645.appspot.com",
+  messagingSenderId: "889544222723",
+  appId: "1:889544222723:web:1c9dbed04a55b2bff00636"
 };
 
 // Initialize Firebase
-const app = initializeApp(firebaseConfig);
+export const app = initializeApp(firebaseConfig);

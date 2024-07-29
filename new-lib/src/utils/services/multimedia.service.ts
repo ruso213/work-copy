@@ -1,11 +1,16 @@
 import { BehaviorSubject } from 'rxjs';
-import { folder } from '../types/folder.type';
+import { folder } from '../../types/folder.type';
 import { Injectable } from '@angular/core';
+import { Firestore } from '@angular/fire/firestore';
 
 @Injectable({
   providedIn: 'root'
 })
 export class MultimediaService {
+
+  constructor(
+    private firestore: Firestore
+  ){}
 
   private multimedia :BehaviorSubject<folder[]> = new BehaviorSubject<folder[]>([{
     folderName:'jjj',

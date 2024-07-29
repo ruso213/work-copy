@@ -6,9 +6,18 @@
     border-radius: 12px;
     .cdk-table {
         width: 100%;
-        border-collapse: separate;
       
-    
+        .folder-cell{
+            display: flex;
+            flex-direction: row;
+            gap: 16px;
+        }
+        .folder-last-cell{
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+        }
+
         /* Estilos para las celdas de encabezado */
         .cdk-header-cell  {
             padding: 18px 16px 12px 16px ;
@@ -20,7 +29,7 @@
         .cdk-cell {
             padding: 25px 16px 25px 16px ;
             border-top: 1px solid #E5E5E5; /* Línea divisoria superior */
-            margin: 20px;
+
         }
         
         .cdk-row{
