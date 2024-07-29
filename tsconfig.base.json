@@ -15,10 +15,10 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@copia-chamba/new-lib": ["new-lib/src/index.ts"],
-      "@ctrl/*": ["libs/*"],
+      "@copia-chamba/libs": ["libs/src/index.ts"],
+      "@copia-chamba/ui": ["libs/share/ui/src/index.ts"],
+      "@copia-chamba/utils": ["libs/utils/src/index.ts"],
       "@ctrl/admin/*": ["apps/admin/src/app/*"],
-      "@ctrl/new-lib/*": ["new-lib/src/*"]
     }
   },
   "exclude": ["node_modules", "tmp"]

@@ -1,12 +1,9 @@
-import { UploadFileComponent } from './../../../../../new-lib/src/share/ui/components/upload-files/upload-file.component';
-import { MultimediaService } from '../../../../../new-lib/src/utils/services/multimedia.service';
-import { MultimediaTableComponent } from './../../../../../new-lib/src/share/ui/components/multimedia-table/multimedia-table.component';
-import { CreateFolderComponent } from './../../../../../new-lib/src/share/ui/components/create-folder/create-folder.component';
+import {MultimediaTableComponent, CreateFolderComponent, folder} from '@copia-chamba/ui'
+import { MultimediaService } from '@copia-chamba/utils';
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MatIcon } from '@angular/material/icon';
 import {Dialog,DialogModule} from '@angular/cdk/dialog';
-import { folder } from '@ctrl/new-lib/types/folder.type';
 
 @Component({
   selector: 'app-multimedia',
