@@ -2,6 +2,7 @@ import { DIALOG_DATA, DialogRef } from '@angular/cdk/dialog';
 import { Component, Inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { InputComponent } from '../input/input.component';
 export interface DialogData {
   name: string;
 }
@@ -9,7 +10,7 @@ export interface DialogData {
 @Component({
   selector: 'lib-create-folder',
   standalone: true,
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule, InputComponent],
   templateUrl: './create-folder.component.html',
   styleUrl: './create-folder.component.css',
 })

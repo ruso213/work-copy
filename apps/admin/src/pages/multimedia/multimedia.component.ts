@@ -1,6 +1,6 @@
 import {MultimediaTableComponent, CreateFolderComponent, folder} from '@copia-chamba/ui'
 import { MultimediaService } from '@copia-chamba/utils';
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MatIcon } from '@angular/material/icon';
 import {Dialog,DialogModule} from '@angular/cdk/dialog';
@@ -12,7 +12,7 @@ import {Dialog,DialogModule} from '@angular/cdk/dialog';
   templateUrl: './multimedia.component.html',
   styleUrl: './multimedia.component.scss',
 })
-export class MultimediaComponent implements OnInit{
+export class MultimediaComponent{
   newFolder = false
   foldersList: folder[] = []
   constructor(
@@ -20,12 +20,7 @@ export class MultimediaComponent implements OnInit{
     private multimediaService: MultimediaService
   ){
   }
-  
-  ngOnInit(): void {
-    this.multimediaService.$multimedia.subscribe(i =>{
-      this.foldersList = i
-    })
-  }
+
 
   createFolder(){
     const dialogRef = this.dialog.open<string>(CreateFolderComponent, {
@@ -39,7 +34,8 @@ export class MultimediaComponent implements OnInit{
           createDate:'',
           numFiles:0,
           updateDate:'',
-          images: []
+          images: [],
+          idUser:''
         })
 
       }

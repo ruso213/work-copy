@@ -1,0 +1,102 @@
+$timeTransition: 0.3s;
+$opacity: 70%;
+$gray-white: #FAFAFA;
+$gray-light: #E1E1E1;
+$gray-low-dark: #D8D8D8;
+$gray-medium: #A3A3A3;
+$gray-dark: #525252;
+
+.file {
+  opacity: 0;
+}
+
+:host{
+    display: inline-flex;
+    flex-direction: column;
+    vertical-align: middle;
+    
+    &.ng-invalid:not(.ng-untouched){
+        .input-wrapper{
+            border-color: red;
+            color: red;
+
+            &:has(> div > input.input:focus) {
+                border-color: black;
+                color: black;
+            }
+
+            &:has(> div > span.content) {
+                border-color: color-mix(in srgb, var(--ctr-error-color) $opacity, transparent);
+                color: var(--ctr-error-color);
+              }
+        }
+
+        .label{
+            color: red;
+        }
+
+        .label.content{
+            color: red;
+        }
+         :focus + .label {
+            color: red;
+          }
+      
+          .hint {
+            color: red;
+          }
+    }
+}
+
+.input-wrapper{
+    border-color: $gray-medium;
+    color:$gray-medium;
+    transition: border-color $timeTransition ease;
+    min-width: 220px;
+    
+    &:has(> div > input.input:focus) {
+        border-color: var(--ctr-input-focus-color, #00c041);
+        color: $gray-medium;
+      }
+    
+      &:has(> div > span.content) {
+        border-color: #171717;
+      }
+    
+      &.filled {
+        border: 0px;
+        background: $gray-white;
+        .input {
+          background: none;
+        }
+      }
+}
+
+.hint {
+    color: $gray-medium;
+  }
+  
+  .label {
+    color: $gray-medium;
+    font-weight: 600;
+    font-size: 14px;
+    top: 50%;
+    transform: translateY(-50%);
+    transition: all $timeTransition ease;
+  }
+  
+  input.input:focus + .label,
+  .label.content {
+    top: 4px;
+    transform: translateY(0);
+    font-size: 10px;
+    line-height: 11.74px;
+    color: #171717;
+  }
+  
+  .input {
+    @apply absolute bottom-0;
+    &.alone {
+      @apply bottom-0 top-1/2 transform -translate-y-1/2;
+    }
+}

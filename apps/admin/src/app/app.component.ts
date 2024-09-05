@@ -18,7 +18,8 @@ export class AppComponent {
     'chevron',
     'menu',
     'notification',
-    'ctlrlogo'
+    'ctlrlogo',
+    'lock'
   ]
   constructor(
     private domSanitizer: DomSanitizer,

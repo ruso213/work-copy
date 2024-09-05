@@ -1,1 +1,19 @@
-<p>input works!</p>
+<div 
+class="input-wrapper px-2 w-full rounded-md border h-12 bg-white flex gap-1 z-[1] relative items-center"
+[class.filled]="style === 'filled'">
+    <div class="relative flex-1 self-stretch">
+
+        <input 
+            class="input outline-none w-full h-[90%] text-sm text-black"
+            [type]="inputType"
+            [(ngModel)]="inputValue"
+            (blur)="onBlur()"
+            (input)="changeValue($event)"
+            >
+        <span  class="absolute label" [class.content]="inputValue">{{label}}</span>
+    </div>
+     <ng-content select="[suffix]"></ng-content>
+</div>
+@if (hint) {
+    <span class="hint">Hint text</span> 
+}

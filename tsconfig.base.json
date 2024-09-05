@@ -18,7 +18,7 @@
       "@copia-chamba/libs": ["libs/src/index.ts"],
       "@copia-chamba/ui": ["libs/share/ui/src/index.ts"],
       "@copia-chamba/utils": ["libs/utils/src/index.ts"],
-      "@ctrl/admin/*": ["apps/admin/src/app/*"],
+      "@ctrl/admin/*": ["apps/admin/src/app/*"]
     }
   },
   "exclude": ["node_modules", "tmp"]
