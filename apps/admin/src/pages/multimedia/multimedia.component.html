@@ -1,7 +1,19 @@
 <div class="w-screen h-screen font-light flex flex-col ">
     <div class=" w-full h-16 bg-auto-green"></div>
     <div class="h-full  flex flex-col justify-between">
-        @if (foldersList.length <= 0) {
+        @if (loading === "loading") {
+            <div class="animate-pulse">
+                <div class="h-[87px] bg-gray-white flex flex-col justify-center">
+                    <div class="mx-10 h-10 bg-gray-xlight rounded-lg"></div>
+                </div>
+                <div class="  mt-6 mx-10 py-4 bg-gray-white rounded-lg flex flex-col gap-2">
+                    @for (item of [1,2,3,4,5,6,7,8,9]; track $index) {
+                        <div class="h-[75px] bg-gray-xlight rounded-lg mx-4 "></div>
+                    }
+                </div>
+            </div>
+        }
+        @else if (foldersList.length <= 0 && loading === "load") {
             <div class="flex justify-center">
                 <div class="w-[1132px] h-[677px] rounded-lg mt-8 border border-gray-light flex flex-col items-center gap-14">
                     <div class="flex flex-col content-center items-center mt-16">
@@ -23,15 +35,16 @@
                     <button class="px-4 py-2 border border-none text-white bg-auto-green rounded-xl" (click)="createFolder()">Crear carpeta</button>
                 </div>
                 <div class="px-10">
-                    <lib-multimedia-table></lib-multimedia-table>
+                    <lib-multimedia-table [displayedColumns]="columns" (row)="openFolder($event)" [multimedia]="foldersList"></lib-multimedia-table>
                 </div>
             </div>
         }
-        @if (foldersList.length <= 0) {
+        @if (foldersList.length <= 0 && loading === "load") {
             <div class="h-[72px] content-blur bg-gray-white flex  justify-center items-center">
                 <div class=" flex flex-row justify-end gap-16 w-[1132px]">
                     <button class="px-4 py-2 border border-auto-green rounded-xl">Omitir</button>
                     <button class="px-4 py-2 border border-none text-white bg-auto-green rounded-xl">Continuar</button>
+                    <button (click)="logout()">logout</button>
                 </div>
             </div>
         }

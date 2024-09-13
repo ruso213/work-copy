@@ -15,6 +15,7 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
+      "@copia-chamba/common": ["libs/share/common/src/index.ts"],
       "@copia-chamba/libs": ["libs/src/index.ts"],
       "@copia-chamba/ui": ["libs/share/ui/src/index.ts"],
       "@copia-chamba/utils": ["libs/utils/src/index.ts"],

@@ -1,8 +1,9 @@
 import { CommonModule } from '@angular/common';
-import {Component} from '@angular/core';
+import {Component, inject, Input, Output, EventEmitter} from '@angular/core';
 import {CdkTableModule} from '@angular/cdk/table';
 import { MatIcon } from '@angular/material/icon';
-import { folder } from '../../models/folder.type';
+import { DocumentData } from 'firebase/firestore';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'lib-multimedia-table',
@@ -12,11 +13,12 @@ import { folder } from '../../models/folder.type';
   styleUrl: './multimedia-table.component.scss',
 })
 export class MultimediaTableComponent {
-  multimedia :folder[] =[]
-  displayedColumns = ['name', 'updateDate', 'numFiles']
- 
-  openFolder(folderId: string){
-      console.log(folderId);
-      
+  @Input() multimedia :DocumentData[] =[]
+  @Input() displayedColumns!: string[] 
+  @Output() row = new EventEmitter();
+  router = inject(Router)
+  
+  clickRow(row: string){
+    this.row.emit(row)
   }
 }

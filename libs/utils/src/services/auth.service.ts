@@ -4,6 +4,8 @@ import { inject, Injectable } from '@angular/core';
 import { doc, setDoc } from '@angular/fire/firestore';
 import { Auth } from '@angular/fire/auth';
 import { Firestore } from '@angular/fire/firestore';
+import { signInWithEmailAndPassword, signOut } from 'firebase/auth';
+
 @Injectable({
   providedIn: 'root',
 })
@@ -12,9 +14,11 @@ export class AuthService {
   private db = inject(Firestore);
   constructor(private router: Router) {}
 
-  logIn(hotel: string, email: string, password: string) {
-    //crear interfaces necesarias
-    return { hotel, email, password };
+  logIn( email: string, password: string) {
+    signInWithEmailAndPassword(this.auth, email, password).then(() => {
+        this.router.navigate(['home/multimedia'])
+      }
+    )
   }
 
   signUp(hotel: string, email: string, password: string) {
@@ -22,9 +26,11 @@ export class AuthService {
       setDoc(doc(this.db, 'users', i.user.uid), {
         hotel: hotel,
         email: email,
-        password: password,
-      });
-    });
-    this.router.navigate(['home/multimedia']);
+      }); 
+    }).then(()=> this.router.navigate(['home/multimedia']));
+  }
+
+  logout(){
+    signOut(this.auth)
   }
 }

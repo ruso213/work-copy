@@ -1,26 +1,51 @@
-<form [formGroup]="loginForm" class=" target-login w-[500px] h-[600px] rounded-3xl bg-white">
-    <div class="flex flex-col justify-start p-5">
-        <mat-icon svgIcon="ctlrlogo" class="ctlrlogo" ></mat-icon>
-        <div class="flex flex-col gap-6 mt-20 text-gray-dark mb-6">
-            <p class="text-3xl">Bienvenido a Contler,</p>
-            <p class="font-light "> para finalizar tu registro es necesario que selecciones el hotel que vas a registrar y completar los siguientes campos:</p>
-        </div>
-        <lib-input formControlName="hotel" [label]="'Selecciona tu hotel'" class="mb-7"></lib-input>
-        <div>
-            <p class="font-light mb-7">Datos y cuenta del administrador</p>
-            <div class="flex flex-col gap-5">
-                <lib-input formControlName="email" [label]="'Correo electrónico'"></lib-input>
-                <lib-input 
-                formControlName="password" 
-                [label]="'Establecer una contraseña'"
-                [inputType]="'password'">
-                    <mat-icon class="scale-90" suffix svgIcon="lock" > </mat-icon>
-                </lib-input>
-            </div>
-        </div>
-        <button type="button" class="mt-9 h-[57px] rounded-xl w-full bg-gray-low-dark  text-white text-xl font-medium" 
-        [class.bg-auto-green]="!loginForm.invalid"
-        [class.bg-gray-low-dark]="loginForm.invalid"
-        (click)="signup()">Continuar</button>
+<form
+  [formGroup]="signupform"
+  class="target-login rounded-3xl bg-white"
+>
+  <div class="flex flex-col justify-start p-5">
+    <mat-icon svgIcon="ctlrlogo" class="ctlrlogo"></mat-icon>
+    <div class="flex flex-col gap-6 mt-20 text-gray-dark mb-6">
+      <p class="text-3xl">Bienvenido a Contler,</p>
+      <p class="font-light">
+        para crear una nueva cuenta llene los siguientes campos, si ya tiene una
+        cuenta entre a este
+        <span
+          class="text-sky-600 underline cursor-pointer"
+          onkeypress
+          (click)="link()"
+          >link.</span
+        >
+      </p>
     </div>
-</form>      
+    <lib-input
+      formControlName="hotel"
+      [label]="'Selecciona tu hotel'"
+      class="mb-7"
+    ></lib-input>
+    <div>
+      <p class="font-light mb-7">Datos y cuenta del administrador.</p>
+      <div class="flex flex-col gap-5">
+        <lib-input
+          formControlName="email"
+          [label]="'Correo electrónico'"
+        ></lib-input>
+        <lib-input
+          formControlName="password"
+          [label]="'Establecer una contraseña'"
+          [inputType]="'password'"
+        >
+          <mat-icon class="scale-90" suffix svgIcon="lock"> </mat-icon>
+        </lib-input>
+      </div>
+    </div>
+    <button
+      type="button"
+      class="mt-9 h-[57px] rounded-xl w-full bg-gray-low-dark text-white text-xl font-medium"
+      [class.bg-auto-green]="!signupform.invalid"
+      [class.bg-gray-low-dark]="signupform.invalid"
+      (click)="signup()"
+    >
+      Continuar
+    </button>
+  </div>
+</form>

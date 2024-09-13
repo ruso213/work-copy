@@ -1,9 +1,10 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MatIconModule } from '@angular/material/icon';
 import { InputComponent } from '../input/input.component';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { AuthService } from '@copia-chamba/utils';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'lib-target-signup',
@@ -13,13 +14,13 @@ import { AuthService } from '@copia-chamba/utils';
   styleUrl: './target-signup.component.scss',
 })
 export class TargetSignUpComponent {
-  loginForm !: FormGroup
-  
+  signupform !: FormGroup
+  router = inject(Router)
   constructor(
     private forms : FormBuilder,
     private authService: AuthService
   ){
-    this.loginForm = this.forms.group({
+    this.signupform = this.forms.group({
       hotel:['', [Validators.required, Validators.minLength(4)]],
       email:['', [Validators.required, Validators.minLength(4)]],
       password:['', [Validators.required, Validators.minLength(4)]],
@@ -27,11 +28,14 @@ export class TargetSignUpComponent {
   }
 
   signup(){
-    const isValid = this.loginForm.valid;
-    const {hotel, email, password} =this.loginForm.getRawValue()
+    const isValid = this.signupform.valid;
+    const {hotel, email, password} =this.signupform.getRawValue()
     if (isValid) {
       this.authService.signUp(hotel, email, password)
     }
- 
+  }
+
+  link(){
+    this.router.navigate(['login'])
   }
 }

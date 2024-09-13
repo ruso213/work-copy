@@ -1,4 +1,10 @@
-<div class="w-[787px] h-[255px] border-dashed rounded-sm bg-gray-white border border-gray-medium flex flex-col justify-center items-center">
-    <div class="h-[60px] w-[60px] border border-gray-medium"></div>
+ <div  class="w-[787px] relative h-[255px] border-dashed rounded-sm bg-gray-white border border-gray-medium flex flex-col justify-center items-center">
+    <img [src]="preloadImage" alt="" class="h-20">
     <p class="font-normal text-xl">Arrastra los archivos aquí</p>
-</div>
+    <input 
+    type="file" 
+    class="opacity-0 absolute h-full w-full"
+    [(ngModel)]="inputValue"
+    (input)="changeValue($event)"
+    multiple>
+ </div>

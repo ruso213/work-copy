@@ -9,7 +9,7 @@
       </ng-container>
   
       <ng-container cdkColumnDef="updateDate">
-        <th cdk-header-cell *cdkHeaderCellDef>Fecha de modificación</th>
+        <th  cdk-header-cell *cdkHeaderCellDef>Fecha de modificación</th>
         <td cdk-cell *cdkCellDef="let element">{{element.updateDate}}</td>
       </ng-container>
   
@@ -22,7 +22,7 @@
       </ng-container>
   
       <tr cdk-header-row *cdkHeaderRowDef="displayedColumns"></tr>
-      <tr cdk-row *cdkRowDef="let row; columns: displayedColumns" (click)="openFolder(row)" class="row-background"></tr>
+      <tr cdk-row *cdkRowDef="let row; columns: displayedColumns" (click)="clickRow(row)" class="row-background"></tr>
     </table>
   </div>
   
