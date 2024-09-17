@@ -1,18 +1,47 @@
 <div class="h-screen flex flex-col justify-between">
-    <div>
-        <div class=" w-full h-16 bg-auto-green"></div>
-        <div class="mb-6 px-10 bg-gray-white flex flex-row justify-between  py-6  items-center">
-            <p class="text-2xl font-normal">Multimedia : {{folder.folderName}}</p>
+    <div class="flex flex-col gap-10">
+        <div>
+            <div class=" w-full h-16 bg-auto-green"></div>
+            <div class="mb-6 px-10 bg-gray-white flex flex-row justify-between  py-6  items-center">
+                <p class="text-2xl font-normal">Multimedia : {{folder.folderName}}</p>
+
+                @if (filesList.length !== 0  && loading === false) {
+                    <form [formGroup]="uploadForm" class="relative inline-block">
+                        <input type="file" id="fileInput" class="absolute inset-0 opacity-0 cursor-pointer" formControlName="images" >
+                        <label for="fileInput" class="inline-block px-4 py-2 text-white bg-auto-green rounded-xl cursor-pointer hover:bg-green-600">
+                          Subir archivo
+                        </label>
+                    </form>
+                }
+
+            </div>
         </div>
-    </div>
-    <div class="w-full flex flex-col justify-center items-center mb-[100px]">
-        <div class="flex flex-col justify-center items-center mb-20">
-            <p class="text-xl font-semibold"> Multimedia</p>
-            <p class="w-[610px] text-center font-light">Sube las imágenes, vídeos o archivos correspondientes a las zonas de tu hotel para usarlas dentro de las diferentes secciones de tu hotel.</p>
-        </div>
-        <form [formGroup]="uploadForm">
-            <lib-upload-file formControlName="images" [preloadImage]="preLoadImg" ></lib-upload-file>
-        </form>
+        @if (filesList.length === 0 && loading === false) {
+            <div class="w-full flex flex-col justify-center items-center mb-[100px]">
+                <div class="flex flex-col justify-center items-center mb-20">
+                    <p class="text-xl font-semibold"> Multimedia</p>
+                    <p class="w-[610px] text-center font-light">Sube las imágenes, vídeos o archivos correspondientes a las zonas de tu hotel para usarlas dentro de las diferentes secciones de tu hotel.</p>
+                </div>
+                <form [formGroup]="uploadForm">
+                    <lib-upload-file formControlName="images" [preloadImage]="'images'" ></lib-upload-file>
+                </form>
+            </div>
+        }@else if( filesList.length > 0 && loading === false){
+            <div class="grid grid-cols-9 gap-2 mx-6 items-start content-start justify-start">
+                @for (item of filesList; track $index) {
+                    <div class=" m-auto rounded-xl">
+                        <img [src]="item.downloadUrl" class="h-40 w-40 object-cover rounded-xl" alt="">
+                    </div>
+                }
+            </div>
+        }@else {
+            <div class="grid grid-cols-9 gap-2 mx-6 items-start content-start justify-start">
+                @for (item of [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]; track $index) {
+                    <div class=" m-auto rounded-xl bg-gray-white h-40 w-40 animate-pulse">
+                    </div>
+                }
+            </div>        
+        }
     </div>
     <div class="h-[72px] content-blur bg-gray-white flex  justify-center items-center">
         <div class=" flex flex-row justify-end gap-16 w-[1132px]">

@@ -47,6 +47,7 @@ export class MultimediaService {
     });
   }
 
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   addFile(folderId: string, data: any) {
     const collectionRef = collection(this.db, 'folder', folderId, 'files');
     return addDoc(collectionRef, data);

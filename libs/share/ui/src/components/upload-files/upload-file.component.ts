@@ -1,11 +1,12 @@
 import { ChangeDetectionStrategy, Component, forwardRef, Input, input } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ControlValueAccessor,FormsModule,NG_VALUE_ACCESSOR } from '@angular/forms';
+import { MatIconModule } from '@angular/material/icon';
 
 @Component({
   selector: 'lib-upload-file',
   standalone: true,
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule, MatIconModule],
   templateUrl: './upload-file.component.html',
   styleUrl: './upload-file.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -22,7 +23,7 @@ export class UploadFileComponent implements ControlValueAccessor{
   private onTouched?: () => void;
   inputValue!: string | File;
   isDisabled = false;
-  @Input() preloadImage !: string | ArrayBuffer | null
+  @Input() preloadImage !: string 
 
   writeValue(obj: any): void {
     this.inputValue = obj;

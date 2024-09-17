@@ -19,7 +19,8 @@ export class AppComponent {
     'menu',
     'notification',
     'ctlrlogo',
-    'lock'
+    'lock',
+    'images',
   ]
   constructor(
     private domSanitizer: DomSanitizer,
