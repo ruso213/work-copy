@@ -5,6 +5,8 @@ import { CommonModule } from '@angular/common';
 import {  file, folder, UploadFileComponent } from '@copia-chamba/ui';
 import { FolderService, MultimediaService } from '@copia-chamba/utils';
 import { FormBuilder, ReactiveFormsModule } from '@angular/forms';
+import { collection, onSnapshot, query } from 'firebase/firestore';
+import { Firestore } from '@angular/fire/firestore';
 
 @Component({
   selector: 'app-folder',
@@ -18,8 +20,10 @@ export class FolderComponent implements OnInit{
   folderService = inject(FolderService)
   formBuilder = inject(FormBuilder)
   route = inject(ActivatedRoute)
-
-  loading = true
+  db = inject(Firestore)
+  
+  routeParam = ''
+  loading : "loading" | "load"= "loading"
   folder !:folder 
   uploadForm = this.formBuilder.group({
     images: ['']
@@ -27,10 +31,20 @@ export class FolderComponent implements OnInit{
 
   filesList: file[] = []
   ngOnInit(): void {
-    this.route.queryParams.subscribe(param=> this.multimediaService.getOneFolder(param['order'])
-    .then(docSnap => this.folder = { ...docSnap.data() as folder, folderId: param['order']})
-    .then(()=> this.getFiles()))
-    
+    this.route.queryParams.subscribe(param=> {
+      this.routeParam = param['order']
+      this.multimediaService.getOneFolder(param['order'])
+      .then(docSnap => this.folder = { ...docSnap.data() as folder, folderId: param['order']})
+    })
+    const q = query(collection(this.db, "folder", this.routeParam, 'files'));
+    const unsubscribe = onSnapshot(q, (querySnapshot) => {
+      const files :file[]= [];
+      querySnapshot.forEach((doc) => {
+        files.push(doc.data() as file);
+    });
+    this.filesList = files
+    this.loading = "load"
+    });
     this.uploadForm.get('images')?.valueChanges.subscribe(i =>this.change(i))
   }
   
@@ -39,17 +53,5 @@ export class FolderComponent implements OnInit{
     this.folderService.uploadFile(this.folder.folderName, file, this.folder.folderId)    
   }
 
-  getFiles(){ 
-    this.folderService.getListFiles(this.folder.folderId)
-    .then(dataList => {
-      const dataArray: file[] = [];
-      dataList.forEach(data => {
-        const filedata = data.data() as file
-        dataArray.push(filedata)
-      })
-      this.filesList = dataArray
-      this.loading = false
-      
-    })
-  }
+  
 }

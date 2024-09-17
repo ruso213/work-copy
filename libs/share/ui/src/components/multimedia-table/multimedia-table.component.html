@@ -1,5 +1,5 @@
-<div class="table-container">
-    <table cdk-table [dataSource]="multimedia">
+<div class="table-container overflow-y-auto max-h-[80vh]"> <!-- Cambia la altura según tus necesidades -->
+  <table cdk-table [dataSource]="multimedia">
       <ng-container cdkColumnDef="name">
         <th cdk-header-cell *cdkHeaderCellDef>Nombre de la carpeta</th>
         <td cdk-cell *cdkCellDef="let element" class="folder-cell">
@@ -13,10 +13,10 @@
         <td cdk-cell *cdkCellDef="let element">{{element.updateDate}}</td>
       </ng-container>
   
-      <ng-container cdkColumnDef="numFiles">
+      <ng-container cdkColumnDef="size">
         <th cdk-header-cell *cdkHeaderCellDef>Archivos</th>
         <td   cdk-cell *cdkCellDef="let element" class="folder-last-cell">
-            <p >{{element.numFiles}}</p>
+            <p >{{element.size}}</p>
             <mat-icon svgIcon="chevron"></mat-icon>
         </td>
       </ng-container>

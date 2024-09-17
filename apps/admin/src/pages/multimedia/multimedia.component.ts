@@ -6,6 +6,8 @@ import { MatIcon } from '@angular/material/icon';
 import {Dialog,DialogModule} from '@angular/cdk/dialog';
 import { DocumentData } from 'firebase/firestore';
 import { Router } from '@angular/router';
+import { collection, Firestore, onSnapshot, query, where } from '@angular/fire/firestore';
+import { Auth } from '@angular/fire/auth';
 
 @Component({
   selector: 'app-multimedia',
@@ -15,22 +17,32 @@ import { Router } from '@angular/router';
   styleUrl: './multimedia.component.scss',
 })
 export class MultimediaComponent implements OnInit{
+  auth = inject(Auth)
+  dialog = inject(Dialog)
   router = inject(Router)
+  multimediaService = inject(MultimediaService)
+  db = inject(Firestore)
   newFolder = false
-  foldersList: DocumentData[] = []
-  authservice = inject(AuthService)
+  foldersList: folder[] = []
   loading : "loading" | "load"= "loading"
-  columns = ['name', 'updateDate', 'numFiles']
-  constructor(
-    private dialog:Dialog,
-    private multimediaService: MultimediaService
-  ){}
+  columns = ['name', 'updateDate',"size"]
+  
+
   ngOnInit(): void {
-    this.multimediaService.getfolders().then(()=>{
-      this.foldersList = this.multimediaService.getMultimediaFolders
-      this.loading = "load"      
-    })
-    
+    const collectionRef = collection(this.db,'folder')
+    const q = query(collectionRef, where("idUser", "==", this.auth.currentUser?.uid)) 
+    const unsubscribe = onSnapshot(q, (querySnapshot) => {
+      
+      const folders :folder[]= [];
+      querySnapshot.forEach((doc) => {
+        folders.push(  {
+          ...doc.data() as folder,
+          folderId: doc.id,
+        })        
+      });
+      this.foldersList = folders
+      this.loading = "load"
+    });
   }
 
   createFolder(){
@@ -49,11 +61,6 @@ export class MultimediaComponent implements OnInit{
     this.router.navigate(
       ["home/folder"],
       { queryParams: { order: evt.folderId } 
-    }
-    )
-  }
-
-  logout(){
-    this.authservice.logout()
+    })
   }
 }

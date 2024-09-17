@@ -4,5 +4,6 @@ export interface folder {
     updateDate:string;
     idUser: string;
     folderId: string;
+    size : number
 }
 
